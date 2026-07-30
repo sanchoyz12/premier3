@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Панорама апартаментов "Студия Плюс" | Апарт-комплекс "Резиденция "Премьер"</title>
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content='Выбор апартаментов с просторной гостиной и дополнительной комнатой класса "Студия Плюс". Комфортная недвижимость за один звонок - бронируйте +7 (909) 777-11-71'>
+    <link rel="canonical" href="panorama-studiya-plus.html">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content='Панорама апартаментов "Студия Плюс" | Апарт-комплекс "Резиденция "Премьер"'>
+    <meta property="og:description" content='Выбор апартаментов с просторной гостиной и дополнительной комнатой класса "Студия Плюс". Комфортная недвижимость за один звонок - бронируйте +7 (909) 777-11-71'>
+    <meta property="og:image" content="https://premiere39.ru/assets/img/renderplans/studiya-plus/render03_type02.webp">
+    <meta property="og:url" content="https://premiere39.ru/panorama-studiya-plus">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Подключение Pannellum -->
+    <link rel="stylesheet" href="css/pannellum.css"/>
+    <script src="js/pannellum.js"></script> 
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        #panorama {
+            width: 100vw;
+            height: 100vh;
+        }
+        .fullscreen-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .textaboutpano {
+            position: absolute;
+            margin: 0;
+            padding: 20px 0 20px 0;
+            bottom: 2%;
+            width: 100%;
+            text-align: center;
+            font-family: CambriaMath;
+            font-size: calc(1rem + 1vw);
+            color: #eac7a1;
+            background-color: #472626f2;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+<!-- Контейнер панорамы -->
+<div id="panorama"></div>
+<!-- Кнопка Fullscreen -->
+<button class="fullscreen-btn" onclick="toggleFullscreen()">На весь экран</button>
+<p class="textaboutpano">Данные планировки представлены в качестве примера интерьера</p>
+<script>
+    // Получаем ID квартиры из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const apartmentId = urlParams.get('apartment') || 'default';
+    // Путь к панораме
+    const panoramaUrl = `assets/img/threed/type02.jpg`;
+    // Инициализация панорамы
+    pannellum.viewer('panorama', {
+        "default": { 
+            "firstScene": "gostinaya", 
+            "sceneFadeDuration": 1000 
+        },
+        "scenes":{
+            "gostinaya":{
+                "type": "equirectangular",
+                "panorama": "assets/img/threed/type02.jpg",
+                "autoLoad": true,
+                "showZoomCtrl": true,
+                "mouseZoom": true,
+                "showFullscreenCtrl": true,
+                "hotSpots": [
+                    {
+                        "pitch": 0,
+                        "yaw": 395,
+                        "type": "scene",
+                        "text": "Комната",
+                        "sceneId": "room"
+                    },
+                    {
+                        "pitch": 0,
+                        "yaw": 295,
+                        "type": "scene",
+                        "text": "Уборная",
+                        "sceneId": "sanusel"
+                    }
+                ]        
+            },
+            "sanusel":{
+                "type": "equirectangular",
+                "panorama": "assets/img/threed/sanusel_type12.jpg",
+                "autoLoad": true,
+                "showZoomCtrl": true,
+                "mouseZoom": true,
+                "showFullscreenCtrl": true,
+                "hotSpots": [
+                    {
+                        "pitch": 0,
+                        "yaw": 175,
+                        "type": "scene",
+                        "text": "Помещение с кухней",
+                        "sceneId": "gostinaya"
+                    }
+                ]   
+            },
+            "room":{
+                "type": "equirectangular",
+                "panorama": "assets/img/threed/room_type2.jpg",
+                "autoLoad": true,
+                "showZoomCtrl": true,
+                "mouseZoom": true,
+                "showFullscreenCtrl": true,
+                "hotSpots": [
+                    {
+                        "pitch": 0,
+                        "yaw": 590,
+                        "type": "scene",
+                        "text": "Помещение с кухней",
+                        "sceneId": "gostinaya"
+                    }
+                ]   
+            }
+        }
+    });
+    // Фулскрин
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    }
+</script>
+</body>
+</html>
